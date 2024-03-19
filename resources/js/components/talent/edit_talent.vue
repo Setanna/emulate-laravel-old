@@ -1,6 +1,6 @@
 <!-- edit_talent.vue -->
 <template>
-    <form class="subcomponent" @submit.prevent="editTalent" id="form" v-if="talent.id">
+    <form class="subcomponent" @submit.prevent="editTalent()" id="form" v-if="talent.id">
 
         <!-- Name & Cost -->
         <div class="background-tertiary title-card title">
@@ -101,7 +101,7 @@
         </div>
 
         <div style="display: flex; justify-content: center; padding-top: 20px;">
-            <button class="background-tertiary clean-button clickable" @click="editTalent()">Save</button>
+            <button class="background-tertiary clean-button clickable" type="submit">Save</button>
             <router-link :to="{name: 'talent', params: {id: talent.id, genre: this.genre}}">
                 <button class="background-tertiary clean-button clickable">
                     Discard
