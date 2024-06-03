@@ -1,6 +1,6 @@
 <!-- view_races.vue -->
 <template>
-    <div class="subcomponent">
+    <div class="table-component">
         <!-- Search -->
         <div class="pb-20">
             <div class="background-tertiary b-2 r-5 table-search">

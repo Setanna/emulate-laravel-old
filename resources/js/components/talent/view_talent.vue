@@ -1,6 +1,6 @@
 <!-- view_talent.vue -->
 <template>
-    <div class="subcomponent" v-if="talent.id">
+    <div v-if="talent.id">
         <!-- Name & Cost -->
         <div v-if="talent.name" class="background-tertiary title-card title">
             <p style="padding-left: 5px;"> {{ talent.name }}</p>

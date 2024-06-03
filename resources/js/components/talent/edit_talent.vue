@@ -1,13 +1,21 @@
 <!-- edit_talent.vue -->
 <template>
-    <form class="subcomponent" @submit.prevent="editTalent()" id="form" v-if="talent.id">
+    <form @submit.prevent="editTalent()" id="form" v-if="talent.id">
 
-        <!-- Name & Cost -->
+        <!-- Name, Cost & Save -->
         <div class="background-tertiary title-card title">
+            <!-- Name -->
             <div v-if="talent.name" style="padding-left: 5px;">
-                <input type="text" placeholder="Name" class="background-tertiary title-input text-dark" v-model="name" required/>
+                <!-- TODO: Autowidth -->
+                <input type="text" placeholder="Name" class="background-tertiary title-input text-dark growable-input" v-model="name" required/>
             </div>
 
+            <!-- Save -->
+            <div class="clickable" style="padding-left: 5px;display: flex; align-items: center" type="submit" @click="editTalent()">
+                <save-icon/>
+            </div>
+
+            <!-- Cost-->
             <div v-if="talent.experience_cost" style="margin-left:auto; margin-right:0; padding-right: 5px;">
                 <input type="number" min="-99" max="99" step="1" placeholder="0" v-model="experience_cost"
                        @keypress="isNumber($event)" class="background-tertiary  title-input text-dark"
@@ -107,15 +115,6 @@
             </table>
         </div>
 
-        <div style="display: flex; justify-content: center; padding-top: 20px;">
-            <button class="background-tertiary clean-button clickable" type="submit">Save</button>
-            <router-link :to="{name: 'talent', params: {id: talent.id, genre: this.genre}}">
-                <button class="background-tertiary clean-button clickable">
-                    Discard
-                </button>
-            </router-link>
-        </div>
-
         <!-- Modals -->
         <Teleport to="body">
             <category-modal v-model:showCategory="showCategory" :categories="categories"
@@ -134,6 +133,7 @@ import editor from '../editor.vue';
 import categoryModal from '../../modals/category.vue';
 import traitModal from '../../modals/trait.vue';
 import Multiselect from '@vueform/multiselect'
+import saveIcon from '../../icons/save.vue';
 
 export default {
     props: ['genre', 'talent'],
@@ -181,7 +181,8 @@ export default {
         editor,
         categoryModal,
         traitModal,
-        Multiselect
+        Multiselect,
+        saveIcon
     },
     methods: {
         editTalent: function () {
