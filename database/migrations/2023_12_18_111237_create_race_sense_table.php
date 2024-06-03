@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('race_senses', function (Blueprint $table) {
+        Schema::create('race_sense', function (Blueprint $table) {
             $table->id();
             $table->foreignId('race_id')->constrained('races')->onDelete("cascade");
             $table->foreignId('sense_id')->constrained('senses')->onDelete("cascade");
-            $table->unique(['race_id', 'sense_id']);
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('race_senses');
+        Schema::dropIfExists('race_sense');
     }
 };
