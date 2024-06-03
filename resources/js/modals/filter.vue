@@ -4,6 +4,7 @@
             <div class="background-tertiary modal-container">
                 <!-- Body -->
                 <div class="modal-body">
+                    <!-- Books -->
                     <div>
                         <fieldset class="fieldset">
                             <legend class="legend">
@@ -36,7 +37,7 @@ export default {
     data() {
         return {
             /* arrays & objects */
-            books: {}
+            books: []
         }
     },
     props: ['search_filters', 'showFilter', 'genre'],

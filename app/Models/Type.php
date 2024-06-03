@@ -19,15 +19,8 @@ class Type extends Model
     /**
      * Get the races that the type has through race_senses
      */
-    public function races()
+    public function race_senses()
     {
-        return $this->hasManyThrough(
-            'App\Models\Race',
-            'App\Models\RaceType',
-            'type_id',
-            'id',
-            'id',
-            'race_id'
-        );
+        return $this->belongsToMany(Race::class);
     }
 }

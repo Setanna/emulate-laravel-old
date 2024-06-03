@@ -22,8 +22,8 @@ class GenreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:genres|max:250',
-            'description' => 'required|max:65535'
+            'name' => 'required|unique:genres|max:255',
+            'description' => 'required|max:255'
         ];
     }
 
@@ -37,7 +37,9 @@ class GenreRequest extends FormRequest
         return [
             'name.unique'   => 'Genre already exists',
             'name.required' => 'Please enter a name',
-            'description.required' => 'Please enter a description'
+            'name.max' => 'Please limit name to 255 characters',
+            'description.required' => 'Please enter a description',
+            'description.max' => 'Please limit description to 255 characters'
         ];
     }
 }

@@ -19,12 +19,16 @@ class RaceResource extends JsonResource
         return [
             'id'                    => $this->id,
             'name'                  => $this->name,
+            'size'                  => $this->size,
             'description'           => $this->description,
+            'flavor'                => $this->flavor,
+            'system'                => $this->system,
             'experience_cost'       => $this->experience_cost,
             'hit_points'            => $this->hit_points,
-            'types'                  => $this->types->pluck('name'),
-            'senses'                => $this->senses->pluck('name'),
-            'book'                  => $this->book->name
+            'talents'               => $this->race_talents,
+            'types'                 => $this->race_types,
+            'senses'                => $this->race_senses,
+            'book'                  => $this->book
         ];
     }
 }

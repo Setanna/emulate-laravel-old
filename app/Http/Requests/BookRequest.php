@@ -22,8 +22,8 @@ class BookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:250',
-            'description' => 'required|max:65535',
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
             'genre_id' => 'required|integer|exists:genres,id',
             'publication_date' => 'required|date'
         ];
@@ -38,7 +38,9 @@ class BookRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter a name',
+            'name.max' => 'Please limit name to 255 characters',
             'description.required' => 'Please enter a description',
+            'description.max' => 'Please limit description to 255 characters',
             'genre_id.required' => 'Please enter a genre id',
             'genre_id.exists' => 'Please enter a genre id that exists',
             'genre_id.integer' => 'Please enter a number for genre id',

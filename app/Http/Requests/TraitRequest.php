@@ -22,8 +22,8 @@ class TraitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:250',
-            'description' => 'required|max:65535',
+            'name' => 'required|max:255|unique:traits',
+            'description' => 'required|max:255',
             'system' => 'required|max:65535'
         ];
     }
@@ -37,8 +37,12 @@ class TraitRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter a name',
+            'name.max' => 'Please limit name to 255 characters',
+            'name.unique' => 'Name is taken',
             'description.required' => 'Please enter a description',
-            'system.required' => 'Please enter a system explanation'
+            'description.max' => 'Please limit description to 255 characters',
+            'system.required' => 'Please enter a system explanation',
+            'system.max' => 'Please limit system text to 65,535 characters'
         ];
     }
 }

@@ -21,7 +21,6 @@ class Category extends Model
      */
     public function talent_categories()
     {
-
         return $this->belongsToMany(Talent::class);
     }
 }

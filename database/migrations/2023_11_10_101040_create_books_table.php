@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("description");
+            $table->tinyText("name");
+            $table->tinyText("description");
             $table->foreignId('genre_id')->constrained('genres')->onDelete("cascade");
             $table->date("publication_date");
             $table->timestamps();

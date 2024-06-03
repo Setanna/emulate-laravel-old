@@ -1,10 +1,9 @@
 <!-- races.vue -->
 <template>
-    <router-view :genre="genre"/>
+    <router-view :genre="genre" :abilities="abilities"/>
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
     props: ['genre', 'abilities']

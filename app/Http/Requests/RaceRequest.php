@@ -23,7 +23,10 @@ class RaceRequest extends FormRequest
     {
         return [
             'name' => 'required|max:250',
+            'size_id' => 'required|max:20|integer|exists:sizes,id',
             'description' => 'required|max:65535',
+            'flavor' => 'required|max:65535',
+            'system' => 'required|max:65535',
             'experience_cost' => 'required|integer',
             'hit_points' => 'required|integer',
             'book_id' => 'required|max:20|integer|exists:books,id'
@@ -39,7 +42,9 @@ class RaceRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter a name',
+            'flavor.required' => 'Please enter flavor text',
             'description.required' => 'Please enter a description',
+            'system.required' => 'Please enter system text',
             'experience_cost.required' => 'Please enter an experience cost',
             'experience_cost.integer' => 'Please enter a number for experience cost',
             'hit_points.required' => 'Please enter hit points',

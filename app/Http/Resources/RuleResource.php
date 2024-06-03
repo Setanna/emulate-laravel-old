@@ -19,8 +19,10 @@ class RuleResource extends JsonResource
         return [
             'id'                    => $this->id,
             'name'                  => $this->name,
-            'text'                  => $this->text,
-            'book'                  => $this->book->name
+            'description'           => $this->description,
+            'flavor'                => $this->flavor,
+            'system'                => $this->system,
+            'books'                 => $this->book_rules
         ];
     }
 }

@@ -22,6 +22,7 @@ class TalentResource extends JsonResource
             'name'                  => $this->name,
             'experience_cost'       => $this->experience_cost,
             'description'           => $this->description,
+            'flavor'                => $this->flavor,
             'system'                => $this->system,
             'book'                  => $this->book,
             'genre'                 => $this->book->genre->name,

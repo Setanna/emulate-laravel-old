@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('senses', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->string("description");
-            $table->string("system");
+            $table->tinyText("name");
+            $table->tinyText("description");
+            $table->text("flavor");
+            $table->text("system");
             $table->timestamps();
         });
     }

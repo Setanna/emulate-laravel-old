@@ -150,16 +150,16 @@ return [
                 'sortableAttributes' => ['name', 'genre', 'publication_date']
             ],
             Rule::class => [
-                'filterableAttributes'=> ['name', 'description', 'book'],
-                'sortableAttributes' => ['name', 'book']
+                'filterableAttributes'=> ['name', 'description'],
+                'sortableAttributes' => ['name']
             ],
             Talent::class => [
-                'filterableAttributes'=> ['name', 'experience_cost', 'description', 'book'],
-                'sortableAttributes' => ['name', 'experience_cost', 'book']
+                'filterableAttributes'=> ['name', 'experience_cost', 'description'],
+                'sortableAttributes' => ['name', 'experience_cost']
             ],
             Race::class => [
-                'filterableAttributes'=> ['name', 'description', 'experience_cost', 'hit_points','book'],
-                'sortableAttributes' => ['name', 'experience_cost', 'hit_points', 'book']
+                'filterableAttributes'=> ['name', 'description', 'experience_cost', 'hit_points'],
+                'sortableAttributes' => ['name', 'experience_cost', 'hit_points']
             ],
             Sense::class => [
                 'filterableAttributes'=> ['name', 'description', 'system'],
@@ -169,17 +169,9 @@ return [
                 'filterableAttributes'=> ['talent', 'required_talent'],
                 'sortableAttributes' => ['talent', 'required_talent']
             ],
-            TalentRequirement::class => [
-                'filterableAttributes'=> ['talent', 'requirement'],
-                'sortableAttributes' => ['talent', 'requirement']
-            ],
             Requirement::class => [
                 'filterableAttributes'=> ['name', 'description'],
                 'sortableAttributes' => ['name']
-            ],
-            TalentCategory::class=>[
-                'filterableAttributes'=> ['talent', 'category'],
-                'sortableAttributes' => ['talent', 'category']
             ],
             Category::class=>[
                 'filterableAttributes'=> ['name', 'description', 'system'],

@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('rules', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
-            $table->longText("text");
-            $table->foreignId('book_id')->constrained('books')->onDelete("cascade");
+            $table->tinyText("name");
+            $table->tinyText("description");
+            $table->text("flavor");
+            $table->text("system");
             $table->timestamps();
         });
     }

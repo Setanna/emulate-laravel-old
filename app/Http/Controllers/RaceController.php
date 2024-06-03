@@ -87,8 +87,8 @@ class RaceController extends Controller
         // Get genres using genre controller function showName
         $genre = $genre_controller->showName($genre_input);
 
-        // Check if there is no error, else return genre.
-        if($genre->getStatusCode() !== 200){
+        // Check if there is no error, else return genre response
+        if ($genre->getStatusCode() !== 200) {
             return $genre;
         }
 

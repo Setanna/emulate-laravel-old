@@ -64,38 +64,14 @@ class TalentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Talent $talent)
+    public function update(TalentRequest $request, Talent $talent)
     {
-        $request->validate([
-            'talent.name' => 'required|max:255|unique:talent,name,' . $talent->id,
-            'talent.experience_cost' => 'required|max:99|min:-99|integer',
-            'talent.categories' => 'array',
-            'talent.categories.*' => 'integer',
-            'talent.requirements' => 'array',
-            'talent.requirements.*' => 'integer',
-            'talent.required_talents' => 'array',
-            'talent.required_talents.*' => 'integer',
-            'talent.description' => 'required|max:65535',
-            'talent.system' => 'required|max:65535',
-            'talent.book_id' => 'required|max:20|integer|exists:books,id',
-            'talent.traits' => 'array',
-            'talent.traits.*' => 'integer'
-        ]);
+        $talent->update($request->all());
 
-        $talent->update(
-            [
-                'name' => $request->input('talent.name'),
-                'experience_cost' => $request->input('talent.experience_cost'),
-                'description' => $request->input('talent.description'),
-                'system' => $request->input('talent.system'),
-                'book_id' => $request->input('talent.book_id'),
-            ]
-        );
-
-        if ($request->filled('talent.categories') ||
-            $request->filled('talent.requirements') ||
-            $request->filled('talent.required_talents' ||
-                $request->filled('talent.traits'))) {
+        if ($request->filled('categories') ||
+            $request->filled('requirements') ||
+            $request->filled('required_talents' ||
+                $request->filled('traits'))) {
             $this->updateRelations($request, $talent);
         }
 
@@ -123,10 +99,10 @@ class TalentController extends Controller
         $t = Talent::find($talent->id);
 
         // Get all the associated data input
-        $categories = $request->collect('talent.categories')->toArray();
-        $requirements = $request->collect('talent.requirements')->toArray();
-        $required_talents = $request->collect('talent.required_talents')->toArray();
-        $traits = $request->collect('talent.traits')->toArray();
+        $categories = $request->collect('categories')->toArray();
+        $requirements = $request->collect('requirements')->toArray();
+        $required_talents = $request->collect('required_talents')->toArray();
+        $traits = $request->collect('traits')->toArray();
 
         // Sync the new associated data
         $t->talent_categories()->sync($categories);

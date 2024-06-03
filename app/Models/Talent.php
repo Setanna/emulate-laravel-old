@@ -15,12 +15,13 @@ class Talent extends Model
         'name',
         'experience_cost',
         'description',
+        'flavor',
         'system',
         'book_id'
     ];
 
     /**
-     * Get the talent requirements that the talent has through TalentRequirement
+     * Get the talent requirements that the talent has through talent_requirements
      */
     public function talent_requirements()
     {
@@ -28,7 +29,7 @@ class Talent extends Model
     }
 
     /**
-     * Get the required talents that the talent has through RequiredTalent
+     * Get the required talents that the talent has through required_talents
      */
     public function required_talents()
     {
@@ -36,7 +37,7 @@ class Talent extends Model
     }
 
     /**
-     * Get the categories that the talent has through TalentCategory
+     * Get the categories that the talent has through talent_categories
      */
     public function talent_categories()
     {
@@ -44,7 +45,7 @@ class Talent extends Model
     }
 
     /**
-     * Get the traits that the talent has through TalentCategory
+     * Get the traits that the talent has through talent_traits
      */
     public function talent_traits()
     {

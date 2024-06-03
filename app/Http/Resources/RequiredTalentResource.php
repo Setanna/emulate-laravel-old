@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RaceSenseResource extends JsonResource
+class RequiredTalentResource extends JsonResource
 {
     public static $wrap = null;
 
@@ -18,8 +18,8 @@ class RaceSenseResource extends JsonResource
     {
         return [
             'id'                        => $this->id,
-            'race'                      => $this->race->name,
-            'sense'                     => $this->sense->name
+            'talent'                    => $this->talent->name,
+            'required_talent'           => $this->required_talent->name
         ];
     }
 }

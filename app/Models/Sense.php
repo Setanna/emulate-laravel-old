@@ -19,15 +19,8 @@ class Sense extends Model
     /**
      * Get the races that the sense has through race_senses
      */
-    public function races()
+    public function race_senses()
     {
-        return $this->hasManyThrough(
-            'App\Models\Race',
-            'App\Models\RaceSense',
-            'sense_id',
-            'id',
-            'id',
-            'race_id'
-        );
+        return $this->belongsToMany(Race::class);
     }
 }

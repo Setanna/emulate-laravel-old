@@ -22,8 +22,8 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:250',
-            'description' => 'required|max:65535',
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
             'system' => 'required|max:65535'
         ];
     }
@@ -37,8 +37,11 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter a name',
+            'name.max' => 'Please limit name to 255 characters',
             'description.required' => 'Please enter a description',
-            'system.required' => 'Please enter a system explanation'
+            'description.max' => 'Please limit description to 255 characters',
+            'system.required' => 'Please enter a system explanation',
+            'system.max' => 'Please limit system text to 65,535 characters'
         ];
     }
 }

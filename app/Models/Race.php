@@ -12,40 +12,37 @@ class Race extends Model
 
     protected $fillable = [
         'name',
+        'size_id',
         'description',
+        'flavor',
+        'system',
         'experience_cost',
         'hit_points',
         'book_id'
     ];
 
     /**
+     * Get the talents that the race has through race_talents
+     */
+    public function race_talents()
+    {
+        return $this->belongsToMany(Talent::class);
+    }
+
+    /**
      * Get the senses that the race has through race_senses
      */
-    public function senses()
+    public function race_senses()
     {
-        return $this->hasManyThrough(
-            'App\Models\Sense',
-            'App\Models\RaceSense',
-            'race_id',
-            'id',
-            'id',
-            'sense_id'
-        );
+        return $this->belongsToMany(Sense::class);
     }
 
     /**
      * Get the types that the race has through race_senses
      */
-    public function types()
+    public function race_types()
     {
-        return $this->hasManyThrough(
-            'App\Models\Type',
-            'App\Models\RaceType',
-            'race_id',
-            'id',
-            'id',
-            'Type_id'
-        );
+        return $this->belongsToMany(Type::class);
     }
 
     /**
@@ -54,5 +51,13 @@ class Race extends Model
     public function book()
     {
         return $this->belongsTo(Book::class, 'book_id', 'id');
+    }
+
+    /**
+     * Get the size the race belongs to
+     */
+    public function size()
+    {
+        return $this->belongsTo(Size::class, 'size_id', 'id');
     }
 }

@@ -52,16 +52,16 @@ class Handler extends ExceptionHandler
         if ($e instanceof QueryException){
             // If the data already exists return custom error message
             if($e->getCode() === "23000"){
-                return response(['error' => 'Data already exists.'], 400);
+                // return response(['error' => 'Data already exists.'], 400);
             }
 
             // else return laravel error message
             return response()->json($e);
         }
 
+        // If token lacks a certain ability
         if($e instanceof MissingAbilityException) {
             $ability = $e->abilities()[0];
-            error_log($e);
             return response(['error' => 'You are not authorized to ' . $ability], 403);
         }
 

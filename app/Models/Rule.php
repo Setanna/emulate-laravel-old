@@ -12,15 +12,16 @@ class Rule extends Model
 
     protected $fillable = [
         'name',
-        'text',
-        'book_id'
+        'description',
+        'flavour',
+        'system'
     ];
 
     /**
-     * Get the book the rule belongs to
+     * Get the books that the rule has through book_rules
      */
-    public function book()
+    public function book_rules()
     {
-        return $this->belongsTo(Book::class, 'book_id', 'id');
+        return $this->belongsToMany(Book::class);
     }
 }

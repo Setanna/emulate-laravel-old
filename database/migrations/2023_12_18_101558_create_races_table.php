@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("description");
+            $table->longText("flavor");
+            $table->longText("system");
             $table->float("experience_cost", 3,0);
             $table->integer("hit_points");
             $table->foreignId('book_id')->constrained('books')->onDelete("cascade");

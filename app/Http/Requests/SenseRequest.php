@@ -22,8 +22,9 @@ class SenseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:250',
-            'description' => 'required|max:65535',
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'flavor' => 'required|max:65535',
             'system' => 'required|max:65535'
         ];
     }
@@ -37,8 +38,13 @@ class SenseRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter a name',
+            'name.max' => 'Please limit name to 255 characters',
             'description.required' => 'Please enter a description',
-            'system.required' => 'Please enter a system explanation'
+            'description.max' => 'Please limit description to 255 characters',
+            'flavor.required' => 'Please enter a flavor text',
+            'flavor.max' => 'Please limit flavor text to 65,535 characters',
+            'system.required' => 'Please enter a system explanation',
+            'system.max' => 'Please limit system text to 65,535 characters'
         ];
     }
 }

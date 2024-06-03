@@ -27,11 +27,7 @@ const router = createRouter({
                     path: ':id', component: () => import('./pages/talent/talent.vue'),
                     children: [
                         {name: 'talent', path: '', component: () => import('./components/talent/view_talent.vue')},
-                        {
-                            name: 'edit_talent',
-                            path: 'edit',
-                            component: () => import('./components/talent/edit_talent.vue')
-                        }
+                        {name: 'edit_talent', path: 'edit', component: () => import('./components/talent/edit_talent.vue')}
                     ]
                 }
             ]
@@ -45,7 +41,8 @@ const router = createRouter({
                 {
                     path: ':id', component: () => import('./pages/race/race.vue'),
                     children: [
-                        {name: 'race', path: '', component: () => import('./components/race/view_race.vue')}
+                        {name: 'race', path: '', component: () => import('./components/race/view_race.vue')},
+                        {name: 'edit_race', path: 'edit', component: () => import('./components/race/edit_race.vue')}
                     ]
                 }
             ]

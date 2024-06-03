@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RaceTypeRequest extends FormRequest
+class TalentCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class RaceTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'race_id' => 'required|max:20|integer|exists:races,id',
-            'type_id' => 'required|max:20|integer|exists:types,id'
+            'talent_id' => 'required|max:20|integer|exists:talent,id',
+            'category_id' => 'required|max:20|integer|exists:categories,id'
         ];
     }
 
@@ -35,12 +35,12 @@ class RaceTypeRequest extends FormRequest
     public function messages()
     {
         return [
-            'race_id.required' => 'Please enter a race id',
-            'race_id.integer' => 'Please enter a number for race id',
-            'race_id.exists' => 'Please enter a race id that exists',
-            'type_id.required' => 'Please enter a type id',
-            'type_id.integer' => 'Please enter a number for type id',
-            'type_id.exists' => 'Please enter a type that exists'
+            'talent_id.required' => 'Please enter a talent id',
+            'talent_id.integer' => 'Please enter a number for talent id',
+            'talent_id.exists' => 'Please enter a talent id that exists',
+            'category_id.required' => 'Please enter a category id',
+            'category_id.integer' => 'Please enter a number for category id',
+            'category_id.exists' => 'Please enter a category that exists'
         ];
     }
 }

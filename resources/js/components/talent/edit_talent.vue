@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <!-- Categories & Books -->
+        <!-- Categories & Book -->
         <div v-if="talent" class="categories sub-title">
             <!-- Categories -->
             <p v-if="talent.categories" class="background-tertiary  category-card clickable"
@@ -68,6 +68,13 @@
             <hr>
             <p style="font-weight: bold">Description:</p>
             <editor name="description" v-model="description"/>
+        </div>
+
+        <!-- flavor -->
+        <div v-if="talent.flavor" class="pb-10">
+            <hr>
+            <p style="font-weight: bold">Description:</p>
+            <editor name="description" v-model="flavor"/>
         </div>
 
         <!-- System -->
@@ -149,6 +156,7 @@ export default {
                 }
             }),
             description: this.talent.description,
+            flavor: this.talent.flavor,
             system: this.talent.system,
             traits: this.talent.traits.map((trait) => {
                 return {id: trait.id, name: trait.name, description: trait.description, system: trait.system}
@@ -192,6 +200,7 @@ export default {
                     return required_talent.value
                 }),
                 description: this.description,
+                flavor: this.flavor,
                 system: this.system,
                 traits: this.traits.map((trait) => {
                     return trait.id
@@ -200,7 +209,19 @@ export default {
             }));
 
             // Update the talent itself
-            axios.put('/api/talent/' + this.talent.id, {talent: talent}).then(() => {
+            axios.put('/api/talent/' + this.talent.id, {
+                id: talent.id,
+                name: talent.name,
+                experience_cost: talent.experience_cost,
+                categories: talent.categories,
+                requirements: talent.requirements,
+                required_talents: talent.required_talents,
+                flavor: talent.flavor,
+                description: talent.description,
+                system: talent.system,
+                traits: talent.traits,
+                book_id: talent.book_id,
+            }).then(() => {
                 this.$router.push({name: 'talent', params: {id: this.talent.id, genre: this.genre}})
             })
                 .catch(error => {

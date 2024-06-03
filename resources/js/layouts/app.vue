@@ -64,7 +64,7 @@
 
                 <div v-if="search_results.races.length" class="search-category">
                     <b class="search-category-title">Races</b>
-                    <router-link v-for="search_result in search_results.races" to="" class="no-text-link">
+                    <router-link v-for="search_result in search_results.races" :to="{ name: 'race', params: { id: search_result.id, genre: this.genre } }" class="no-text-link">
                         {{ search_result.name }}
                     </router-link>
                 </div>
@@ -81,7 +81,7 @@
         </div>
 
         <!-- Component -->
-        <router-view v-slot="{ Component }" :genre="genre" :abilities="abilities" :options="options">
+        <router-view v-slot="{ Component }" :genre="genre" :abilities="abilities">
             <div class="component">
                 <keep-alive>
                     <component :is="Component"></component>

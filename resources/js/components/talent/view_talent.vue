@@ -52,6 +52,13 @@
             <p v-html="talent.description"></p>
         </div>
 
+        <!-- flavor -->
+        <div v-if="talent.flavor">
+            <hr>
+            <p style="font-weight: bold">Flavor:</p>
+            <p v-html="talent.flavor"></p>
+        </div>
+
         <!-- System -->
         <div v-if="talent.system">
             <hr>

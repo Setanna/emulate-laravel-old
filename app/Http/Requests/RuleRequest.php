@@ -22,9 +22,10 @@ class RuleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:250',
-            'text' => 'required|max:65535',
-            'book_id' => 'required|max:20|integer|exists:books,id'
+            'name' => 'required|max:255|unique:rules',
+            'description' => 'required|max:255',
+            'flavor' => 'required|max:65535',
+            'system' => 'required|max:65535'
         ];
     }
 
@@ -37,10 +38,14 @@ class RuleRequest extends FormRequest
     {
         return [
             'name.required' => 'Please enter a name',
-            'text.required' => 'Please enter text',
-            'book_id.required' => 'Please enter a book id',
-            'book_id.exists' => 'Please enter a book id that exists',
-            'book_id.integer' => 'Please enter a number for book id'
+            'name.max' => 'Please limit name to 255 characters',
+            'name.unique' => 'Name is taken',
+            'description.required' => 'Please enter a description',
+            'description.max' => 'Please limit description to 255 characters',
+            'flavor.required' => 'Please enter a flavor text',
+            'flavor.max' => 'Please limit flavor text to 65,535 characters',
+            'system.required' => 'Please enter a system explanation',
+            'system.max' => 'Please limit system text to 65,535 characters'
         ];
     }
 }

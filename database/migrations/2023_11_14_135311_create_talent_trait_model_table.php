@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('talent_id')->constrained('talent')->onDelete("cascade");
             $table->foreignId('trait_model_id')->constrained('traits')->onDelete("cascade");
-            $table->timestamps();
         });
     }
 

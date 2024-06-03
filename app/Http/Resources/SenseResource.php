@@ -19,7 +19,9 @@ class SenseResource extends JsonResource
         return [
             'id'                    => $this->id,
             'name'                  => $this->name,
-            'description'           => $this->description
+            'description'           => $this->description,
+            'flavor'                => $this->flavor,
+            'system'                => $this->system,
         ];
     }
 }

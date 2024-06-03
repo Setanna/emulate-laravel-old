@@ -26,6 +26,14 @@ class Book extends Model
     }
 
     /**
+     * Get the rules that the book has through book_rules
+     */
+    public function book_rules()
+    {
+        return $this->belongsToMany(Rule::class);
+    }
+
+    /**
      * Get the talents the book has
      */
     public function talents()

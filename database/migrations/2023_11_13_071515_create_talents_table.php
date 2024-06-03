@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('talent', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->tinyText("name");
             $table->float("experience_cost", 3,0);
-            $table->string("description");
-            $table->longText("system");
+            $table->text("description");
+            $table->text("system");
+            $table->text("flavor");
             $table->foreignId('book_id')->constrained('books')->onDelete("cascade");
             $table->timestamps();
         });
