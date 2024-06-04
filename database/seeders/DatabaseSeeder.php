@@ -126,12 +126,15 @@ class DatabaseSeeder extends
         Talent(9, "Animate Dead", 1, "You reanimate the dead to do your bidding", "flavor", "Spend XP up to half the targets XP. The creature reanimates as undead with only the given amount of XP available for the talents it had in life. When the minion dies, you regain the amount of XP spent, this XP can only be used on Animate Dead. Pay additional XP depending on size.", 5);
         Talent(10, "Mass Animate Dead", 3, "Reanimate an army at the snap of your fingers", "flavor", "As Animate Dead, but any number of targets", 5);
         Talent(11, "Undead Militia", 5, "Your undead are stronger and more versatile", "flavor", "All undead created by you, using animate dead, gain Armor Training (All) and Weapon Training (All)", 5);
-        Talent(12, "Condescending Teamwork", 5, "Your belief that you're better than everyone else allows you to pull others to your level.", "flavor", "Your allies count as minion for talents with the minion trait.", 1);
+        Talent(12, "Condescending Teamwork", 5, "Your belief that you're better than everyone else allows you to pull others to your level.", "flavor", "Your allies count as minions for talents with the minion trait.", 1);
         Talent(13, "Dwarven Stoutness", 2, "You're as heavy and tough as a chunk of metal, and as agile.", "flavor", "You count as 2 sizes larger for the purposes of weight and size modifiers (flight, stealth, attack, defense, damage and damage reduction).", 1);
+        Talent(16, "Spellcasting", 1, "You can the basic of spellcasting", "flavor",
+            "<p>Each spellcaster must choose a source of their magic, this defines how many spells they can cast and other limitations. <strong>Runic</strong> The runic source defines ancient symbols and engravings.</p>",
+            1);
         /* Sci-fi */
         Talent(14, "Xenophobic", -1, "You're xenophobic", "flavor", "system", 6);
         /* Superhero */
-        Talent(15, "Let Loose", 10, "You're always holding back", "flavor", "Double your physical stats in dire situations", 7);
+        Talent(15, "Let Loose", 10, "You're always holding back", "Spellcasters come in wide varieties, casting spells from dusty old tomes, or borrowing power from something greater.", "Double your physical stats in dire situations", 7);
 
         /* Sync talents with required talent relations */
         Talent::find(5)->required_talents()->sync([4]);
@@ -216,6 +219,7 @@ class DatabaseSeeder extends
         Talent::find(11)->talent_traits()->sync([1, 4]);
         Talent::find(12)->talent_traits()->sync([4]);
         Talent::find(13)->talent_traits()->sync([3]);
+        Talent::find(16)->talent_traits()->sync([1,2]);
 
         function Rule($id, $name, $description, $flavor, $system) {
             $Model = new \App\Models\Rule();
@@ -229,11 +233,9 @@ class DatabaseSeeder extends
 
         Rule(1, "Damage Reduction", "A number which reduces the damage taken", "Damage reduction can be anything from force fields, armor, hulking muscles or even scales.", "Damage Reduction reduces damage taken by the given number to a minimum of 0. The reduction is applied after any division to the damage. A negative damage reduction instead increases damage taken.");
         Rule(2, "Size", "Size can determine a lot regarding a creature", "Being a hulking dragon nets some bonuses, being harder to damage due to your sheer size, but a lot easier to hit.", "A creature gains benefits and penalties regarding their size as seen on Table 1 - Size and Modifiers.");
-        Rule(3, "Test", "Test", "Test", "Test");
 
         Rule::find(1)->book_rules()->sync([1, 6, 7]);
         Rule::find(2)->book_rules()->sync([1, 6, 7]);
-        Rule::find(3)->book_rules()->sync([2]);
 
         function Size($name, $description, $system, $height, $weight, $flight_modifier, $stealth_modifier, $attack_modifier, $defense_modifier, $damage_modifier, $damage_reduction_modifier) {
             $Model = new \App\Models\Size();

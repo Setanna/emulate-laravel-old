@@ -7,7 +7,7 @@
             <!-- Name -->
             <div v-if="talent.name" style="padding-left: 5px;">
                 <!-- TODO: Autowidth -->
-                <input type="text" placeholder="Name" class="background-tertiary title-input text-dark growable-input" v-model="name" required/>
+                <input v-autowidth="{maxWidth: '100%', minWidth: '20px', comfortZone: 0}" type="text" placeholder="Name" class="background-tertiary title-input text-dark" v-model="name" required/>
             </div>
 
             <!-- Save -->
