@@ -489,6 +489,7 @@ h1, h2, h3, h4, h5, h6, p, a, b, th, tbody {
     font-size: 32px;
     font-weight: bold;
     text-decoration: none;
+    width: 100%;
     border: none;
     box-sizing: border-box;
     padding-left: 0;
