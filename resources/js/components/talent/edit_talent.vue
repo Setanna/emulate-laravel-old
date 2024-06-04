@@ -4,15 +4,15 @@
 
         <!-- Name, Cost & Save -->
         <div class="background-tertiary title-card title">
-            <!-- Name -->
-            <div v-if="talent.name" style="padding-left: 5px;">
-                <!-- TODO: Autowidth -->
-                <input v-autowidth="{maxWidth: '100%', minWidth: '20px', comfortZone: 0}" type="text" placeholder="Name" class="background-tertiary title-input text-dark" v-model="name" required/>
-            </div>
-
             <!-- Save -->
             <div class="clickable" style="padding-left: 5px;display: flex; align-items: center" type="submit" @click="editTalent()">
                 <save-icon/>
+            </div>
+
+            <!-- Name -->
+            <div v-if="talent.name" style="padding-left: 5px;">
+                <!-- TODO: Autowidth -->
+                <input type="text" placeholder="Name" class="background-tertiary title-input text-dark" v-model="name" required/>
             </div>
 
             <!-- Cost-->
