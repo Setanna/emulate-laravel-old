@@ -128,9 +128,10 @@ class DatabaseSeeder extends
         Talent(11, "Undead Militia", 5, "Your undead are stronger and more versatile", "flavor", "All undead created by you, using animate dead, gain Armor Training (All) and Weapon Training (All)", 5);
         Talent(12, "Condescending Teamwork", 5, "Your belief that you're better than everyone else allows you to pull others to your level.", "flavor", "Your allies count as minions for talents with the minion trait.", 1);
         Talent(13, "Dwarven Stoutness", 2, "You're as heavy and tough as a chunk of metal, and as agile.", "flavor", "You count as 2 sizes larger for the purposes of weight and size modifiers (flight, stealth, attack, defense, damage and damage reduction).", 1);
-        Talent(16, "Spellcasting", 1, "You can the basic of spellcasting", "flavor",
-            "<p>Each spellcaster must choose a source of their magic, this defines how many spells they can cast and other limitations. <strong>Runic</strong> The runic source defines ancient symbols and engravings.</p>",
-            1);
+        Talent(17, "Magic Blood", 1, "Your magic comes from the blood flowing through you", "Your magic comes as naturally to you as breathing. A simple wave of the hand and you can call waves of water to capsize ships.", "You gain a number of Source Points equal to your constitution. Temporary changes to your Constitution does not increase or decrease the amount of Source Points gained from this talent. <br><br> Additionally you gain the Natural Talent Action <br><br> <strong>Natural Talent</strong> <br> As a free action you can spend a source point to reduce the number of action needed to cast your next spell by one. This can only reduce the number of actions needed to a minimum of zero.", 1);
+        Talent(18, "Rune Caster", 1, "Your magic comes from ancient runes, bending and twisting the magic to do your bidding.", "You trace intricate and ancient runes in the air, forcing the magic found in everything to bend to your will. A single rune can hold thousand of different meanings allowing you to force the magic to do many different things.", "You can use talents with the spell trait, without expending Source Points. When a talent is used in this way, the talent counts as having used a number of Source Points up to your Intelligence. Additionally a talent used this way gains the Somatic trait and takes an additional action to use.", 1);
+        Talent(19, "Rune Book", 1, "You've learnt to write and memorize a plethora of spells", "Ancient runes fill the pages of this dusty tome.","When you buy this talent you must choose a book you own, that book is considered your Rune Book, if the Rune Book is ever lost or destroyed you can choose a new book that you own. <br><br> You can buy talents with the spell trait, for 1 XP less, to a minimum of 0 XP. Talents bought this way are written into your Rune Book. If the Rune Book is ever destroyed you lose all the talents written in the book, but regain the XP expended, this XP can only be used to buy talents using this talent. <br><br> Each morning you must choose a number of spells written in your Rune Book. You can choose a number of spells up to your Intelligence. For that day you can use the chosen spells. <br><br> You gain the Revise Action (TODO: make actions their own thing) <br><br> <strong>Revise</strong><br>You can use 3 actions to change 1 spell chosen for another spell in your Rune Book.", 1);
+        Talent(20, "Pyromancy", 1, "You've learnt to control fire", "flavor", "Your mastery over fire grants you the following actions: <br><br> <strong>Firebolt (1 action, Somatic trait, Spell trait)</strong> <br> You hurl a small ball of fire at an opponent, dealing 1d6 damage for each Source Point Spent <br><br> <strong>Fireball (3 action, Somatic trait, Spell trait)</strong> <br> You hurl a giant aoe fireball at your enemies, dealing 1d6 damage for each Source Point Spent", 1);
         /* Sci-fi */
         Talent(14, "Xenophobic", -1, "You're xenophobic", "flavor", "system", 6);
         /* Superhero */
@@ -141,6 +142,7 @@ class DatabaseSeeder extends
         Talent::find(6)->required_talents()->sync([4]);
         Talent::find(10)->required_talents()->sync([9]);
         Talent::find(11)->required_talents()->sync([10]);
+        Talent::find(19)->required_talents()->sync([18]);
 
 
         function Requirement($id, $name, $description, $system) {
@@ -152,13 +154,11 @@ class DatabaseSeeder extends
             $Model->save();
         }
 
-        Requirement(1, "Verbal", "A talent with this requirement needs words or sound spoken or played on an instrument.", "system");
-        Requirement(2, "Somatic", "A talent with this requirement needs both hands free, or wielding the specified equipment", "system");
-        Requirement(3, "Material", "A talent with this requirement needs some sort of material to be used. The material is consumed only if the talent states so", "system");
+        Requirement(1, "Source", "A talent with this requirement requires a talent with the source trait.", "system");
 
         /* Sync talents with requirements relations */
         Talent::find(3)->talent_requirements()->sync([1]);
-        Talent::find(9)->talent_requirements()->sync([1, 2, 3]);
+        Talent::find(20)->talent_requirements()->sync([1]);
 
         function Category($id, $name, $description, $system) {
             $Model = new \App\Models\Category();
@@ -193,6 +193,10 @@ class DatabaseSeeder extends
         Talent::find(13)->talent_categories()->sync([3]);
         Talent::find(14)->talent_categories()->sync([6]);
         Talent::find(15)->talent_categories()->sync([1]);
+        Talent::find(17)->talent_categories()->sync([3, 4]);
+        Talent::find(18)->talent_categories()->sync([3, 4]);
+        Talent::find(19)->talent_categories()->sync([3, 4]);
+        Talent::find(20)->talent_categories()->sync([1]);
 
         function TraitModel($id, $name, $description, $system) {
             $Model = new \App\Models\TraitModel();
@@ -207,6 +211,9 @@ class DatabaseSeeder extends
         TraitModel(2, "Diverse", "A talent with a wide array of options to choose from.", "Talents with the Diverse trait can be taken any number of times, but any option chosen from the talent can only be chosen once.");
         TraitModel(3, "Heritage", "A talent that gives you power through your bloodline. ", "Talents with the Heritage trait affect your race in one way or another.");
         TraitModel(4, "Minion", "A talent that grants control over a minion, such as a pet or undead, or involves a minion.", "Talents with the minion trait only work on minions or create minions.");
+        TraitModel(5, "Verbal", "A talent that uses sound to muster allies or to demoralize enemies.", "Talents with the verbal trait need to be used with speech, instruments or similar.");
+        TraitModel(6, "Source", "A talent that grants the wielder a source of magic to use for other talents", "Talents with the source trait also gain the magic trait. Additionally a talent can only expend Source Points from a single source talent and can never expend less than zero source points.");
+        TraitModel(7, "Spell", "A talent that uses a source of magic for its effects", "Talents with the spell trait also gain the magic trait. A Spell can only expend Source Points from a single source talent, and can never expend less than zero source points.");
 
         /* Sync talents with trait relations */
         Talent::find(4)->talent_traits()->sync([3]);
@@ -214,12 +221,14 @@ class DatabaseSeeder extends
         Talent::find(6)->talent_traits()->sync([3]);
         Talent::find(7)->talent_traits()->sync([2]);
         Talent::find(8)->talent_traits()->sync([2]);
-        Talent::find(9)->talent_traits()->sync([1, 4]);
+        Talent::find(9)->talent_traits()->sync([1, 4, 7]);
         Talent::find(10)->talent_traits()->sync([1, 4]);
         Talent::find(11)->talent_traits()->sync([1, 4]);
         Talent::find(12)->talent_traits()->sync([4]);
         Talent::find(13)->talent_traits()->sync([3]);
-        Talent::find(16)->talent_traits()->sync([1,2]);
+        Talent::find(17)->talent_traits()->sync([6]);
+        Talent::find(18)->talent_traits()->sync([6]);
+        Talent::find(20)->talent_traits()->sync([7]);
 
         function Rule($id, $name, $description, $flavor, $system) {
             $Model = new \App\Models\Rule();
@@ -258,7 +267,6 @@ class DatabaseSeeder extends
         Size("Medium", "description", "system", "1.2 to 2.4 metres", "32 to 256 kilograms", 0, 0, 0, 0, 0, 0);
         Size("Large", "description", "system", "2.4 to 4.8 metres", "256 to 2048 kilograms", -2, -2, -2, -2, 4, 4);
         Size("Huge", "description", "system", "4.8 to 9.6 metres", "2048 to 4096 kilograms", -4, -4, -4, -4, 8, 8);
-
 
         function Sense($id, $name, $description, $flavor, $system) {
             $Model = new \App\Models\Sense();
