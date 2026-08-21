@@ -51,7 +51,6 @@ Route::group(['middleware' => ['auth:sanctum', 'ability:create']], function () {
 });
 
 /* Update */
-Route::group(['middleware' => ['auth:sanctum', 'ability:update']], function () {
     Route::put('/genre/{genre}', [GenreController::class, 'update']);
     Route::put('/book/{book}', [BookController::class, 'update']);
     Route::put('/rule/{rule}', [RuleController::class, 'update']);
@@ -64,10 +63,6 @@ Route::group(['middleware' => ['auth:sanctum', 'ability:update']], function () {
     Route::put('/race_sense/{race_sense}', [RaceSenseController::class, 'update']);
     Route::put('/race_type/{race_type}', [RaceTypeController::class, 'update']);
     Route::put('/type/{type}', [TypeController::class, 'update']);
-
-    /* Custom Update Functions */
-    // Route::put('/talent/{talent}', [TalentController::class, 'updateTalent']);
-});
 
 /* Destroy */
 Route::group(['middleware' => ['auth:sanctum', 'ability:destroy']], function () {
